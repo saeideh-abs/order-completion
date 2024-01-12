@@ -1,0 +1,7 @@
+export { default as IconPlus } from './components/IconPlus'
+export { default as IconArrowDown } from './components/IconArrowDown'
+export { default as IconClose } from './components/IconClose'
+export { default as IconComment } from './components/IconComment'
+export { default as IconSpinner } from './components/IconSpinner'
+export { default as IconHappy } from './components/IconHappy'
+export { default as IconSad } from './components/IconSad'
