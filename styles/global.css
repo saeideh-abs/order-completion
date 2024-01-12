@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* scrollbar style */
 /* Works on Firefox */
 * {
@@ -12,16 +11,15 @@
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: transparent;
+  @apply bg-bmGray-100;
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  @apply bg-gray-300;
-  @apply hover:bg-gray-400;
+  @apply bg-bmGray-200;
+  @apply hover:bg-bmGray-300;
 }
