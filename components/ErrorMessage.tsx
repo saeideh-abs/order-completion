@@ -8,7 +8,12 @@ export const ErrorMessage = ({
   className?: string
 }) => {
   return (
-    <div className={cn('mt-2 text-2xs text-annotation-error', className)}>
+    <div
+      className={cn(
+        'mt-2 text-xs text-annotation-error font-medium',
+        className,
+      )}
+    >
       {text}
     </div>
   )
