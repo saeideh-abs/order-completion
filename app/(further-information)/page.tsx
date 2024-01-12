@@ -29,36 +29,37 @@ export default function FurtherInformation() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="px-5 py-8 flex flex-col justify-between gap-8 h-full">
-        <div>
-          <p>لطفا اطلاعات شخصی مالک خودرو را وارد کنید:</p>
-          <Divider className="mb-4" />
-          <div className="flex flex-col gap-[22px]">
-            <div className="flex flex-col">
-              <Input
-                placeholder="کد ملی"
-                {...register('nationalCode')}
-                error={!!errors.nationalCode}
-              />
-              <ErrorMessage text={errors.nationalCode?.message} />
-            </div>
-
-            <div className="flex flex-col">
-              <Input
-                placeholder="شماره تلفن همراه"
-                {...register('phoneNumber')}
-                error={!!errors.phoneNumber}
-              />
-              <ErrorMessage text={errors.phoneNumber?.message} />
-            </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="px-5 py-8 flex flex-col justify-between gap-8 h-full"
+    >
+      <div>
+        <p>لطفا اطلاعات شخصی مالک خودرو را وارد کنید:</p>
+        <Divider className="mb-4" />
+        <div className="flex flex-col gap-[22px] mb-8">
+          <div className="flex flex-col">
+            <Input
+              placeholder="کد ملی"
+              {...register('nationalCode')}
+              error={!!errors.nationalCode}
+            />
+            <ErrorMessage text={errors.nationalCode?.message} />
           </div>
-          <Address />
+
+          <div className="flex flex-col">
+            <Input
+              placeholder="شماره تلفن همراه"
+              {...register('phoneNumber')}
+              error={!!errors.phoneNumber}
+            />
+            <ErrorMessage text={errors.phoneNumber?.message} />
+          </div>
         </div>
-        <Button color="secondary" className="self-end" type="submit">
-          تایید و ادامه
-        </Button>
+        <Address onSelectAddress={address => console.log(address)} />
       </div>
+      <Button color="secondary" className="self-end" type="submit">
+        تایید و ادامه
+      </Button>
     </form>
   )
 }

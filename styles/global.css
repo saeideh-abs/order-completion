@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  margin: 0;
+}
 /* scrollbar style */
 /* Works on Firefox */
 * {

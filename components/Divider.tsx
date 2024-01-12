@@ -12,7 +12,7 @@ export const Divider = ({
   return (
     <div
       className={cn(
-        variant === 'vertical' ? 'w-[1px] h-full' : 'w-full h-[1px]',
+        variant === 'vertical' ? 'w-[1px] h-full' : 'w-full h-[1px] my-2',
         'bg-bmGray-100',
         className,
       )}
