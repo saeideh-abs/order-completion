@@ -23,6 +23,7 @@ const config: Config = {
       },
       boxShadow: {
         header: '0px 3px 15px 3px rgba(34,34,34,0.10)',
+        elevation2: '0px 3px 15px 3px rgba(34, 34, 34, 0.10)',
       },
       colors: {
         primary: {
@@ -36,6 +37,7 @@ const config: Config = {
         bmGray: {
           500: '#757575',
           300: '#B4B4B4',
+          200: '#C2C2C2',
           100: '#E0E0E0',
         },
         common: {
