@@ -3,3 +3,9 @@ export type AddressType = {
   name: string
   details: string
 }
+
+export type OrderCompletion = {
+  nationalId: string
+  phoneNumber: string
+  addressId: string
+}

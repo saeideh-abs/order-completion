@@ -9,7 +9,7 @@ export function useAddressList() {
       try {
         const res = await axios({
           method: 'get',
-          url: '/my-addresses',
+          url: '/my-addresses/',
         })
         return res.data
       } catch (error) {
