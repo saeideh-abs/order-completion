@@ -7,8 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { mobilePhone, nationalCode } from '@/schemas/global-schema'
 import { useCreateOrderCompletion } from '@/api/orderCompletion'
 import { useState } from 'react'
-import SuccessMessage from './_components/SuccessMessage'
 import { cn } from '@/utils'
+import Message from './_components/Message'
 
 const formSchema = object({
   nationalCode: nationalCode(),
@@ -17,7 +17,8 @@ const formSchema = object({
 })
 
 export default function FurtherInformation() {
-  const [showSuccessMsg, setShowSuccessMsg] = useState<boolean>(false)
+  const [showMsg, setShowMsg] = useState<false | 'success' | 'error'>(false)
+  const [errMsg, setErrMsg] = useState<string>('')
 
   const {
     register,
@@ -45,11 +46,12 @@ export default function FurtherInformation() {
       },
       {
         onSuccess() {
-          setShowSuccessMsg(true)
+          setShowMsg('success')
         },
         onError: (error: any) => {
           console.log({ ...error })
-          alert(error.response.data.errors[0])
+          setShowMsg('error')
+          setErrMsg(error.response.data.errors[0])
         },
       },
     )
@@ -57,15 +59,25 @@ export default function FurtherInformation() {
 
   return (
     <>
-      {showSuccessMsg && (
-        <SuccessMessage getBack={() => setShowSuccessMsg(false)} />
+      {showMsg && (
+        <Message
+          variant={showMsg === 'success' ? 'success' : 'error'}
+          message={
+            showMsg === 'success' ? 'اطلاعات شما باموفقیت ثبت شد.' : errMsg
+          }
+          getBack={() => {
+            setShowMsg(false)
+            setErrMsg('')
+          }}
+        />
       )}
+      {/* order completion form */}
       {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={cn(
             'px-5 py-8 flex flex-col justify-between gap-8 h-full',
-            showSuccessMsg && 'hidden',
+            showMsg && 'hidden',
           )}
         >
           <div>
