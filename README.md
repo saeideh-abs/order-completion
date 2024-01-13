@@ -1,12 +1,12 @@
-You can access the online version from [https://order-completion.vercel.app/].
-If you use VPN, don't forget to turn it off.
+You can access the online version from [https://order-completion.vercel.app/](https://order-completion.vercel.app/).
+Cause the app is hosted on vercel, you have to turn the vpn on at loading time, but then turn it off to can simply request the API.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, create .env.local file and put required credentials. you can take the template from .env.template file.
-Make sure you add NEXT_PUBLIC_API_BASE_URL value.
+First, create .env.local file and put required credentials to it. you can take the template from .env.template file.
+Make sure you add the NEXT_PUBLIC_API_BASE_URL value.
 
 Then install the necessary packages(NPM package manager is used in this project):
 
