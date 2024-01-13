@@ -12,12 +12,13 @@ export default function Address({
   onSelectAddress: (adr: AddressType) => void
 }) {
   const { data: addresses, error, isLoading } = useAddressList()
-  const [finalAddress, setFinalAddress] = useState<AddressType>()
+  const [finalAddress, setFinalAddress] = useState<AddressType>() // final selected address(after pressing submit btn)
 
   const handleSelect = (finalAddress: AddressType) => {
     onSelectAddress(finalAddress)
     setFinalAddress(finalAddress)
   }
+
   return (
     <Sheet>
       <p className="font-semibold">آدرس جهت درج روی بیمه‌نامه</p>
@@ -44,6 +45,7 @@ export default function Address({
         ) : (
           <AddressOptions
             addresses={addresses ?? []}
+            defaultSelected={finalAddress}
             onSelectAddress={handleSelect}
           />
         )}
@@ -54,13 +56,18 @@ export default function Address({
 
 type AddressOptionsProps = {
   addresses: AddressType[]
+  defaultSelected: AddressType | undefined
   onSelectAddress: (adr: AddressType) => void
 }
+
 const AddressOptions = ({
   addresses,
+  defaultSelected,
   onSelectAddress,
 }: AddressOptionsProps) => {
-  const [selected, setSelected] = useState<AddressType>()
+  const [selected, setSelected] = useState<AddressType | undefined>(
+    defaultSelected,
+  ) // temporary selected radio button option
 
   const handleSelectAddress = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
