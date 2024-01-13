@@ -2,7 +2,7 @@ import { Divider, ErrorMessage, Input } from '@/components'
 import Address from './Address'
 import { useFormContext } from 'react-hook-form'
 import { infer as zInfer } from 'zod'
-import { formSchema } from '../page'
+import { formSchema } from '../schema'
 
 export default function OrderFormInputs() {
   const {

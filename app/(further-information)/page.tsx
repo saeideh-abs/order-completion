@@ -1,20 +1,14 @@
 'use client'
 import { Button } from '@/components'
-import { infer as zInfer, object, string } from 'zod'
+import { infer as zInfer } from 'zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { mobilePhone, nationalCode } from '@/schemas/global-schema'
 import { useCreateOrderCompletion } from '@/api/orderCompletion'
 import { useState } from 'react'
 import { cn } from '@/utils'
 import Message from './_components/Message'
 import OrderFormInputs from './_components/OrderFormInputs'
-
-export const formSchema = object({
-  nationalCode: nationalCode(),
-  phoneNumber: mobilePhone(),
-  address: string().min(1, { message: 'آدرس نمی‌تواند خالی باشد' }),
-})
+import { formSchema } from './schema'
 
 export default function FurtherInformation() {
   const [showMsg, setShowMsg] = useState<false | 'success' | 'error'>(false)
