@@ -11,7 +11,6 @@ export default function Address({
 }: {
   onSelectAddress: (adr: AddressType) => void
 }) {
-  const { data: addresses, error, isLoading } = useAddressList()
   const [finalAddress, setFinalAddress] = useState<AddressType>() // final selected address(after pressing submit btn)
 
   const handleSelect = (finalAddress: AddressType) => {
@@ -38,33 +37,25 @@ export default function Address({
         </Button>
       </SheetTrigger>
       <SheetContent side="bottom" className="h-[70%]">
-        {isLoading ? (
-          <div className="text-center p-5">در حال دریافت اطلاعات...</div>
-        ) : error ? (
-          <div className="text-center p-5">خطا رخ داده است.</div>
-        ) : (
-          <AddressOptions
-            addresses={addresses ?? []}
-            defaultSelected={finalAddress}
-            onSelectAddress={handleSelect}
-          />
-        )}
+        <AddressOptions
+          defaultSelected={finalAddress}
+          onSelectAddress={handleSelect}
+        />
       </SheetContent>
     </Sheet>
   )
 }
 
 type AddressOptionsProps = {
-  addresses: AddressType[]
   defaultSelected: AddressType | undefined
   onSelectAddress: (adr: AddressType) => void
 }
 
 const AddressOptions = ({
-  addresses,
   defaultSelected,
   onSelectAddress,
 }: AddressOptionsProps) => {
+  const { data: addresses, error, isLoading } = useAddressList()
   const [selected, setSelected] = useState<AddressType | undefined>(
     defaultSelected,
   ) // temporary selected radio button option
@@ -78,47 +69,51 @@ const AddressOptions = ({
     } else e.preventDefault()
   }
 
-  return (
-    <div className="flex flex-col h-full">
-      <AddressHeader />
+  if (isLoading)
+    return <div className="text-center p-5">در حال دریافت اطلاعات...</div>
+  else if (error) return <div className="text-center p-5">خطا رخ داده است.</div>
+  else
+    return (
+      <div className="flex flex-col h-full">
+        <AddressHeader />
 
-      <div className="p-5 grow overflow-auto">
-        <RadioGroup
-          dir="rtl"
-          value={selected?.id}
-          onValueChange={value => {
-            const adrs = addresses.find(x => x.id === value)
-            setSelected(adrs)
-          }}
-        >
-          {addresses.map(item => (
-            <div key={item.id} className="flex gap-3">
-              <RadioGroupItem value={item.id} id={item.id} />
-              <div className="flex flex-col gap-[10px]">
-                <label>{item.name}</label>
-                <p className="text-xs text-bmGray-500">{item.details}</p>
-              </div>
-            </div>
-          ))}
-        </RadioGroup>
-      </div>
-
-      <div className="p-5 shadow-elevation2">
-        <SheetClose asChild>
-          <Button
-            size="sm"
-            color="secondary"
-            block
-            disabled={!selected}
-            type="submit"
-            onClick={e => handleSelectAddress(e, selected)}
+        <div className="p-5 grow overflow-auto">
+          <RadioGroup
+            dir="rtl"
+            value={selected?.id}
+            onValueChange={value => {
+              const adrs = addresses?.find(x => x.id === value)
+              setSelected(adrs)
+            }}
           >
-            انتخاب
-          </Button>
-        </SheetClose>
+            {addresses?.map(item => (
+              <div key={item.id} className="flex gap-3">
+                <RadioGroupItem value={item.id} id={item.id} />
+                <div className="flex flex-col gap-[10px]">
+                  <label>{item.name}</label>
+                  <p className="text-xs text-bmGray-500">{item.details}</p>
+                </div>
+              </div>
+            ))}
+          </RadioGroup>
+        </div>
+
+        <div className="p-5 shadow-elevation2">
+          <SheetClose asChild>
+            <Button
+              size="sm"
+              color="secondary"
+              block
+              disabled={!selected}
+              type="submit"
+              onClick={e => handleSelectAddress(e, selected)}
+            >
+              انتخاب
+            </Button>
+          </SheetClose>
+        </div>
       </div>
-    </div>
-  )
+    )
 }
 
 const AddressHeader = () => {
