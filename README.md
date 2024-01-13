@@ -1,24 +1,28 @@
+You can access the online version from [https://order-completion.vercel.app/].
+If you use VPN, don't forget to turn it off.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, create .env.local file and put required credentials. you can take the template from .env.template file.
+Make sure you add NEXT_PUBLIC_API_BASE_URL value.
+
+Then install the necessary packages(NPM package manager is used in this project):
+
+```bash
+npm install
+```
+
+Now you can run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
