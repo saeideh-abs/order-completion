@@ -38,9 +38,9 @@ export default function Address({
       </SheetTrigger>
       <SheetContent side="bottom" className="h-[70%]">
         {isLoading ? (
-          'در حال دریافت اطلاعات...'
+          <div className="text-center p-5">در حال دریافت اطلاعات...</div>
         ) : error ? (
-          'خطا رخ داده است'
+          <div className="text-center p-5">خطا رخ داده است.</div>
         ) : (
           <AddressOptions
             addresses={addresses ?? []}

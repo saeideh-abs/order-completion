@@ -37,7 +37,6 @@ export default function FurtherInformation() {
   const createOrderCompletionMu = useCreateOrderCompletion()
 
   const onSubmit = (data: zInfer<typeof formSchema>) => {
-    console.log(data)
     createOrderCompletionMu.mutate(
       {
         nationalId: data.nationalCode,
@@ -49,6 +48,7 @@ export default function FurtherInformation() {
           setShowSuccessMsg(true)
         },
         onError: (error: any) => {
+          console.log({ ...error })
           alert(error.response.data.errors[0])
         },
       },

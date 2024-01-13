@@ -1,12 +1,11 @@
+import { isValidNationalCode } from '@/utils'
 import * as z from 'zod'
 
-export const nationalCode = () =>
+export const nationalCode = (message = 'کد ملی وارد شده معتبر نیست.') =>
   z
     .string()
     .min(1, { message: 'این قسمت نمی‌تواند خالی باشد' })
-    .refine(value => /^\d{10}$/.test(value), {
-      message: 'کدملی وارد شده معتبر نیست',
-    })
+    .refine(code => isValidNationalCode(code), { message })
 
 export const mobilePhone = () =>
   z
