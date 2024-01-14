@@ -4,5 +4,6 @@ const instance = axios.create({})
 
 instance.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL
 instance.defaults.timeout = 10000
+instance.defaults.withCredentials = true
 
 export default instance
